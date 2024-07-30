@@ -1,0 +1,37 @@
+{% extends 'Salon/Layout.html' %}
+{% load static %}
+
+{% block title %}
+Личный кабинет | Груминг салон для животных "Опрятные лапки" - стрижка собак и кошек
+{% endblock %}
+
+{% block content %}
+<div class="profile-main">
+    <h1 style="text-align:center;">Портфолио грумера </h1>
+
+      <hr color="#de8b37" size="5px" width="100%"/>
+
+
+    <div class="portfolio-inner">
+                <div class="portfolio-groomer">
+                    {% if master.photo %}<img class="portfolio-photo" src="{{ master.photo.url }}">{% endif %}
+                    <hr color="#de8b37" size="5px" width="100%"/>
+                    <p>{{ master.fam }} {{ master.name }} {{ master.otch }}</p>
+                    <p>Стаж работы: {{ master.exp }}</p>
+                    <hr color="#de8b37" size="5px" width="100%"/>
+                    <p>О себе: {{ master.about }}</p>
+                </div>
+            <div class="portfolio-right">
+                {% for el in portfolios %}
+                    <hr color="#de8b37" size="5px" width="100%"/>
+                    <img class="portfolio-photo" src="{{ el.photo.url }}">
+                    <p style="margin: 10 0 0 0">{{ el.description }}</p>
+                    <hr color="#de8b37" size="5px" width="100%"/>
+                {% endfor %}
+            </div>
+
+    </div>
+</div>
+
+
+{% endblock %}

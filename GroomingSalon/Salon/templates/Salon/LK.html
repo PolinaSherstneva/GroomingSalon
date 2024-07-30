@@ -1,0 +1,99 @@
+{% extends 'Salon/Layout.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+Личный кабинет | Груминг салон для животных "Опрятные лапки" - стрижка собак и кошек
+{% endblock %}
+
+{% block content %}
+<div class="profile-main">
+    <h1 style="text-align:center;">Личный кабинет</h1>
+
+      <hr color="#de8b37" size="5px" width="100%"/>
+
+
+    <div class="profile-inner">
+            <div class="profile-left">
+                {% if user_profile.name and user_profile.surname %}
+                    <h1 class="user-hello">Здравствуйте, {{ user_profile.name }} {{ user_profile.surname }}!</h1>
+                {% endif%}
+                <div class="profile-records">
+
+                {% if records %}
+
+                {% for rec in records %}
+
+                <div class="record">
+                    <h4>Запись № {{ rec.id }}  -  {% if rec.status == "1" %} Ожидание подтверждения {% elif rec.status == "2" %} Запись подтверждена {% elif rec.status == "3" %} Выполнена {% endif %}</h4>
+                    <hr color="#de8b37" size="5px" width="95%"/>
+                    <p>Дата: {{ rec.date }}  Время: {{ rec.time }}</p>
+                    <p>Питомец: {{ rec.pet_user.pet.name }}</p>
+                    <p>Услуга: {{ rec.service.name }}, стоимость: {{ rec.service.price|intcomma }}р.</p>
+                    <p>Грумер: {{ rec.master.fam }} {{rec.master.name}} {{rec.master.otch}}</p>
+                    <hr color="#de8b37" size="5px" width="95%"/>
+                </div>
+                {% endfor %}
+                {% else %}
+                {% if pets %}
+                <div class="record">
+                    <h4>Активных записей нет</h4>
+                </div>
+                {% endif %}
+
+                {% endif %}
+
+            </div>
+                <div class="profile-user">
+                    <h4>Информация о Вас:</h4>
+                    <hr color="#de8b37" size="5px" width="100%"/>
+                    <p>Имя: {% if user_profile.name %}{{ user_profile.name }} {% else %} не указано {% endif %}</p>
+                    <p>Фамилия: {% if user_profile.surname %}{{ user_profile.surname }} {% else %} не указана {% endif %}</p>
+                    <p>Номер телефона: {{ user_profile.phone_number }}</p>
+                    {% if not user_profile.name and not user_profile.surname %}
+                        <p>Пожалуйста, укажите имя и фамилию, чтобы мы знали, как к Вам обращаться! Для этого нажмите на кнопку "Редактировать профиль"</p>
+                    {% endif %}
+                    <hr color="#de8b37" size="5px" width="100%"/>
+                    <div class="btn-user-inf">
+                        <a href="{% url 'changeinf' %}"><button class="btn-user-inf-btn">Редактировать профиль</button></a>
+                        <a href="{% url 'archive_lk' %}"><button class="btn-user-inf-btn">Архив записей</button></a>
+                        <form action="{% url 'logout' %}" method="post">
+                             {% csrf_token %}
+                            <button type="submit" class="btn-user-inf-btn">Выйти из личного кабинета</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="profile-pets">
+                {% if not pets %}
+                 <div class="pet">
+                <p>Вам необходимо зарегистрировать питомца!</p>
+                 </div>
+                {% else %}
+                    {% for el in pets %}
+                        <div class="pet">
+                            <div class="pet-img">
+                                {% if el.pet.photo %}<img class="pet-photo" src="{{ el.pet.photo.url }}">{% else %}<p>Нет</p>{% endif %}
+
+                            </div>
+                            <div class="pet-inf">
+                                <p>Кличка: {{ el.pet.name }}</p>
+                                <p>Порода: {{ el.pet.race }}</p>
+                                <p>Возраст: {{ el.pet.age }} (полных лет)</p>
+
+                            </div>
+                            <div class="pet-btns">
+                                <a href="{% url 'change-pet-inf' el.pet.id %}" style="margin: 0 60 0 0;"><button class="btn-record">Редактировать профиль питомца</button></a>
+
+                                <a href="{% url 'record' el.pet.id %}"><button class="btn-record">Записать на прием</button></a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <a href="{% url 'reg-pet' %}"><button class="btn-reg_log">Зарегистрировать питомца</button></a>
+            </div>
+    </div>
+</div>
+
+
+{% endblock %}

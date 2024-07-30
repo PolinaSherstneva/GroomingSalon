@@ -1,0 +1,70 @@
+{% extends 'Salon/Layout.html' %}
+{% load static %}
+{% block title %}
+Запись на прием | Груминг салон для животных "Опрятные лапки" - стрижка собак и кошек
+{% endblock %}
+{% block head %}
+
+{% endblock %}
+{% block content %}
+<div class="rec-pet">
+<h3>Запись {{ pet.name }} на прием</h3>
+
+<form class="form_add" id="recordForm" enctype="multipart/form-data" method="post" data-time-url="{% url 'ajax-load-time' %}">
+    <div class="form_add_pet">
+      {% csrf_token %}
+        <h4>Питомец: {{ pet_user.pet.name }}</h4>
+        {{ form.pet_user }}<br>
+        {{ form.service }}<br>
+        {{ form.master }}<br>
+        {{ form.date }}<br>
+        {{ form.time  }}<br>
+        {{ form.status }}<br>
+    <span>{{ error }}</span>
+        <p></p>
+    </div>
+    <button class="btn-reg_log" type="submit">Записаться</button>
+</form>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $("#id_date").change(function () {
+        const url = $("#recordForm").attr("data-time-url");
+        const dateId = $(this).val();
+        const masterId = $("#id_master").val();
+
+        $.ajax({
+            url: '{% url 'ajax-load-time' %}',
+            data: {
+                date_id: dateId,
+                master_id: masterId
+            },
+            success: function (data) {
+                $("#id_time").html(data);
+            }
+        });
+    });
+</script>
+<script>
+    $("#id_master").change(function () {
+
+        const dateId = $("#id_date").val();
+        const masterId = $("#id_master").val();
+
+        $.ajax({
+            url: '{% url 'ajax-load-time-master' %}',
+            data: {
+                date_id: dateId,
+                master_id: masterId
+            },
+            success: function (data) {
+                $("#id_time").html(data);
+            }
+        });
+    });
+</script>
+
+</div>
+
+{% endblock %}
+
+

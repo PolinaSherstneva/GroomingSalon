@@ -1,0 +1,53 @@
+{% extends 'Salon/Layout.html' %}
+{% load static %}
+{% block title %}
+Администрирование грумеров | Груминг салон для животных "Опрятные лапки" - стрижка собак и кошек
+{% endblock %}
+{% block content %}
+<div class="head-serv">
+        <a href="javascript:history.back()" style="text-decoration:none; color:black; margin: 10px 0 0 130px;"><i class="bi bi-caret-left" style=" font-size: 50px;"></i></a>
+        <div>
+             <h1 class="name-service-part" style="margin: 0 0 0 50px;">Грумеры</h1>
+        </div>
+        <div class="search-serv-adm" style="margin: auto;">
+            <form action="{% url 'admin_groomers' %}" method="get" class="search-adm-input">
+                <input name="search" type="text" placeholder="Поиск...">
+                <button type="submit">Найти</button>
+            </form>
+        </div>
+        <div class="search-serv-adm" style="margin: auto;">
+            {% if user.is_superuser %}
+                <form action="{% url 'create_groomer' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn-reg_log" style="width:400px; margin:auto;">Зарегистрировать нового грумера</button>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+{% if groomer %}
+<div class="Groomers">
+    {% for el in groomer %}
+    <div class="Groomer">
+        <div class="groomer-img">
+            {% if el.photo %}<img class="groomer-photo" src="{{ el.photo.url }}">{% else %}<p>Нет</p>{% endif %}
+        </div>
+        <div class="groomer-inf">
+            <p>Фамилия: {{ el.fam }}</p>
+            <p>Имя: {{ el.name }}</p>
+            <p>Отчество: {{ el.otch }}</p>
+            <p>Опыт работы: {{ el.exp }}</p>
+             <a href="{% url 'portfolio' el.id %}"><button class="btn-portfolio">Посмотреть портфолио</button></a>
+            <a href="{% url 'change-groomer' el.id %}"><button class="btn-portfolio" style="margin: 10 0 0 0;">Редактировать</button></a>
+        </div>
+
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+    <div style="height: 20%; width: 700px; margin: 50 auto;">
+        <h1 style="font-family: cursive; font-size: 30px; text-align:center; margin:10;">По вашему запросу ничего не найдено!
+            <h1 style="font-family: cursive; font-size: 30px; text-align:center; margin:10;">Нажмите "Найти", чтобы увидеть всех грумеров</h1>
+        </h1>
+    </div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'Salon/Layout.html' %}
+{% load static %}
+
+
+{% block title %}
+Добавление услуг | Груминг салон для животных "Опрятные лапки" - стрижка собак и кошек
+{% endblock %}
+
+{% block content %}
+<div class="reg-pet">
+<h3>Добавление услуги</h3>
+
+<form class="form_add" method="post">
+    <div class="form_add_pet">
+        {% csrf_token %}
+        {{ form.name }}<br>
+        {{ form.price }}<br>
+        {{ form.description }}<br>
+        {{ form.type }}<br>
+    <span>{{ error }}</span>
+        <p></p>
+    </div>
+    <button class="btn-reg_log" type="submit">Добавить</button>
+
+</form>
+</div>
+
+
+{% endblock %}

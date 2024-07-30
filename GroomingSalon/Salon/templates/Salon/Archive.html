@@ -1,0 +1,36 @@
+{% extends 'Salon/Layout.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+Архив записей на прием | Груминг салон для животных "Опрятные лапки" - стрижка собак и кошек
+{% endblock %}
+
+{% block content %}
+<div class="profile-main">
+    <div class="head-archive">
+        <a href="javascript:history.back()" style="text-decoration:none; color:black; margin: 10px 0 0 40px;"><i class="bi bi-caret-left" style=" font-size: 50px;"></i></a>
+        <h1 style="text-align:center;">Архив записей на прием</h1>
+    </div>
+
+
+    <hr color="#de8b37" size="5px" width="100%"/>
+    <div class="profile-inner">
+                {% if records %}
+                {% for rec in records %}
+                <div class="record" style="margin: 0; padding: 10 10 10 10;">
+                    <h4>Запись № {{ rec.id }}  -  {% if rec.status == "1" %} Ожидание подтверждения {% elif rec.status == "2" %} Запись подтверждена {% elif rec.status == "3" %} Выполнена {% endif %}</h4>
+                    <hr color="#de8b37" size="5px" width="95%"/>
+                    <p>Дата: {{ rec.date }}  Время: {{ rec.time }}</p>
+                    <p>Питомец: {{ rec.pet_user.pet.name }}</p>
+                    <p>Услуга: {{ rec.service.name }}, стоимость: {{ rec.service.price|intcomma }}р.</p>
+                    <p>Грумер: {{ rec.master.fam }} {{rec.master.name}} {{rec.master.otch}}</p>
+                    <hr color="#de8b37" size="5px" width="95%"/>
+                </div>
+                {% endfor %}
+                {% endif %}
+    </div>
+</div>
+
+
+{% endblock %}

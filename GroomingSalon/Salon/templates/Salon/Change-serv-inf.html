@@ -1,0 +1,23 @@
+{% extends 'Salon/Layout.html' %}
+{% load static %}
+
+
+{% block title %}
+Форма редактирования услуг | Груминг салон для животных "Опрятные лапки" - стрижка собак и кошек
+{% endblock %}
+
+{% block content %}
+<div class="reg-pet">
+<h3>Редактирование услуги</h3>
+<form class="form_add" method="post">
+    {% csrf_token %}
+    {{ form.name }}<br>
+    {{ form.price }}<br>
+    {{ form.description }}<br>
+    {{ form.type }}<br>
+    <span>{{ error }}</span>
+    <p></p>
+    <button class="btn-reg_log" type="submit">Сохранить</button>
+</form>
+</div>
+{% endblock %}

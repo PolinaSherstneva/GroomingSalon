@@ -1,0 +1,33 @@
+{% extends 'Salon/Layout.html' %}
+{% load static %}
+
+
+{% block title %}
+Регистрация грумера | Груминг салон для животных "Опрятные лапки" - стрижка собак и кошек
+{% endblock %}
+
+{% block content %}
+<div class="create-groomer">
+<h3>Регистрация грумера</h3>
+
+<form class="form_add" enctype="multipart/form-data" method="post">
+    <div class="form_add_pet">
+        {% csrf_token %}
+        {{ form.fam }}<br>
+        {{ form.name }}<br>
+        {{ form.otch }}<br>
+        {{ form.exp }}<br>
+        {{ form.about }}<br>
+        {{ form.photo }}
+    <span>{{ error }}</span>
+        <p></p>
+    </div>
+
+
+    <button class="btn-reg_log" type="submit">Зарегистрировать</button>
+
+</form>
+</div>
+
+
+{% endblock %}

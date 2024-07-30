@@ -1,0 +1,361 @@
+/* Личный кабинет */
+body {
+background-color: #FEFAE0;
+padding:0px;
+margin:0px;
+}
+.radio-btn {
+justify-content: left;
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+}
+}
+.head-adm {
+
+justify-content: space-between;
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+}
+.head-archive {
+justify-content: center;
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+}
+
+.search-rec-adm {
+width:100%;
+padding: 10px;
+margin: auto;
+font-family: cursive;
+font-size: 15px;
+}
+.search-rec-adm-input {
+margin:0;
+justify-content: space-between;
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+}
+
+.search-rec-adm input{
+display:block;
+width: 300px;
+}
+.search-rec-adm button {
+background:#eb9c4d;
+color:white;
+border: none;
+border-radius: 15px;
+padding: 10px;
+font-family: cursive;
+font-size: 15px;
+width:30%;
+}
+.search-rec-adm button:hover {
+ background: #de8b37;
+}
+
+.admin-btn {
+justify-content: space-between;
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+}
+
+.message {
+    height:10px;
+    margin: 0 0 0 45%;
+    font-family: cursive;
+    font-size: 20px;
+}
+
+.profile-main {
+    padding: 20px 35px;
+    background-color: #FAEDCD;
+    border-radius: 20px;
+    border: 1px solid #D4A373;
+    margin: 2% auto;
+    width: 1500px;
+    font-family: cursive;
+    margin: auto;
+}
+
+.profile-inner {
+justify-content: space-between;
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+}
+.record {
+    background-color: #FAEDCD;
+    border-radius: 20px;
+    border: 1px solid #D4A373;
+    font-size: 20px;
+    padding: 10 0 10 35px;;
+    margin: 1% 0 0 1%;
+    width: 700px;
+    font-family: cursive;
+}
+.profile-records {
+margin: -5px 0 0 0;
+display: flex;
+flex-direction: column;
+width: 45%
+}
+.btn-user-inf {
+justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+}
+.btn-user-inf a {
+height:60px;
+text-align: center;
+}
+/* Инфо пользователя */
+.profile-user{
+    background-color: #FAEDCD;
+    border-radius: 20px;
+    border: 1px solid #D4A373;
+    font-size: 20px;
+    padding: 20px 35px;
+    margin: 1% 0 0 1%;
+    width: 700px;
+    font-family: cursive;
+}
+/* Приветствие пользователя */
+.user-hello {
+margin: 10px 0 10px 0;
+text-align:center;
+font-size: 20px;
+font-family: cursive;
+}
+/* Информация о всех питомцах */
+.profile-pets {
+margin: 45px 0 0 0;
+display: flex;
+flex-direction: column;
+}
+/* Инфо о питомце */
+.pet-btns {
+    display: flex;
+    margin: 10 auto;
+}
+
+.pet {
+    background-color: #FAEDCD;
+    border-radius: 20px;
+    border: 1px solid #D4A373;
+    font-size: 20px;
+    padding: 20px 35px;
+    margin: 0 0 10px 0;;
+    width: 700px;
+    font-family: cursive;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.pet-inf {
+width:43%;
+padding:10px;
+}
+.pet-img {
+text-align:center;
+width: 350px;
+}
+.btn-record {
+background:#eb9c4d;
+color:white;
+border: none;
+border-radius: 15px;
+padding: 15px;
+font-family: cursive;
+font-size: 20px;
+width:100%;
+
+}
+.btn-record:hover {
+ background: #de8b37;
+}
+/* Регистрация питомца */
+.form_add_pet button {
+margin: 100px 0 20px 0;
+}
+.pet-img img {
+width: 100%;
+border-radius: 20px;
+border: 1px solid #D4A373;
+}
+.textp {
+font-family: cursive;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+}
+.zone_register {
+    padding: 20px 35px;
+    background-color: #FAEDCD;
+    border-radius: 50px;
+    border: 1px solid #D4A373;
+    margin: 90 auto;
+    width: 700px;
+    font-family: cursive;
+}
+.zone_autor {
+    padding: 20px 35px;
+    background-color: #FAEDCD;
+    border-radius: 50px;
+    border: 1px solid #D4A373;
+    margin: 140 auto;
+    width: 700px;
+    font-family: cursive;
+}
+.authorization__container_container {
+padding: 20px 100px 20px 50px;
+background: white;
+border-radius: 60px;
+border: 1px solid #000;
+margin: 10px 168px 0 168px;
+width:600px;
+}
+.authorization__title{
+font-family: cursive;
+}
+.btn-reg_log{
+background:#eb9c4d;
+color:#e4c1c7;
+border: none;
+border-radius: 15px;
+padding: 15px;
+font-family: cursive;
+margin: 20px 0;
+font-size: 20px;
+width:100%;
+
+}
+.FIO {
+text-alight:center;
+}
+.btn-reg_log:hover{
+ background: #de8b37;
+}
+.btn-user-inf-btn {
+background:#eb9c4d;
+color:white;
+border: none;
+border-radius: 15px;
+padding: 10px;
+font-family: cursive;
+font-size: 17px;
+width:100%;
+}
+.btn-user-inf-btn:hover {
+ background: #de8b37;
+}
+
+.form__form input{
+border-radius: 15px;
+    margin: 10px 0px;
+     padding: 0px 10px;
+     width: 100%;
+    height: 50px;
+ }
+.form__label{
+     padding: 0 0 5px 0;
+}
+.registration{
+     margin: 10px 0;
+     position:relative;
+}
+.form__data{
+    margin-bottom: 11px;
+}
+.btn-reg_log{
+    color: white;
+}
+
+
+
+
+.change-user-inf {
+    padding: 20px 35px;
+    border-radius: 15px;
+    margin: 150 auto;
+    background-color: #FAEDCD;
+    border: 1px solid #D4A373;
+    width: 700px;
+    font-family: cursive;
+    text-align:center;
+}
+.change-status {
+    padding: 20px 35px;
+    border-radius: 15px;
+    margin: 240 auto;
+    background-color: #FAEDCD;
+    border: 1px solid #D4A373;
+    width: 700px;
+    font-family: cursive;
+    text-align:center;
+}
+.change-status h3 {
+margin: 0 0 30px 0;
+}
+.change-status button {
+margin: 0;
+}
+.reg-pet {
+padding: 20px 35px;
+    border-radius: 15px;
+    margin: 100 auto;
+    background-color: #FAEDCD;
+    border: 1px solid #D4A373;
+    width: 700px;
+    font-family: cursive;
+    text-align:center;
+}
+.create-groomer {
+padding: 20px 35px;
+    border-radius: 15px;
+    margin: 20 auto;
+    background-color: #FAEDCD;
+    border: 1px solid #D4A373;
+    width: 700px;
+    font-family: cursive;
+    text-align:center;
+}
+.rec-pet{
+padding: 20px 35px;
+    border-radius: 15px;
+    margin: 95 auto;
+    background-color: #FAEDCD;
+    border: 1px solid #D4A373;
+    width: 700px;
+    font-family: cursive;
+    text-align:center;
+}
+.rec-pet-ready {
+padding: 20px 35px;
+    border-radius: 15px;
+    margin: 250 auto;
+    background-color: #FAEDCD;
+    border: 1px solid #D4A373;
+    width: 700px;
+    font-family: cursive;
+    text-align:center;
+}
+.change-user-inf h3 {
+margin: 0 0 30px 0;
+}
+.change-user-inf button {
+margin: 0;
+}
+.btn-success{
+    margin-top:20px;
+}
+

@@ -1,0 +1,35 @@
+{% extends 'Salon/Layout.html' %}
+{% load static %}
+
+
+{% block title %}
+Наши грумеры | Груминг салон для животных "Опрятные лапки" - стрижка собак и кошек
+{% endblock %}
+
+
+
+{% block content %}
+<div class="div-text-groom">
+             <h1 class="name-groomers-part">Грумеры</h1>
+        </div>
+
+<div class="Groomers">
+
+    {% for el in groomer %}
+    <div class="Groomer">
+        <div class="groomer-img">
+            {% if el.photo %}<img class="groomer-photo" src="{{ el.photo.url }}">{% else %}<p>Нет</p>{% endif %}
+        </div>
+        <div class="groomer-inf">
+            <p>Фамилия: {{ el.fam }}</p>
+            <p>Имя: {{ el.name }}</p>
+            <p>Отчество: {{ el.otch }}</p>
+            <p>Опыт работы: {{ el.exp }}</p>
+             <a href="{% url 'portfolio' el.id %}"><button class="btn-portfolio">Посмотреть портфолио</button></a>
+        </div>
+
+    </div>
+    {% endfor %}
+
+</div>
+{% endblock %}

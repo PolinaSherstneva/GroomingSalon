@@ -1,0 +1,59 @@
+{% extends 'Salon/Layout.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+Личный кабинет | Груминг салон для животных "Опрятные лапки" - стрижка собак и кошек
+{% endblock %}
+
+{% block content %}
+<div class="profile-main">
+    <div class="profile-inner-cp">
+        <a href="javascript:history.back()" style="text-decoration:none; color:black;"><i class="bi bi-caret-left" style=" font-size: 50px;"></i></a>
+
+            <div class="profile-left">
+
+            </div>
+                <div class="profile-client">
+                    <h4>Информация о клиенте:</h4>
+                    <hr color="#de8b37" size="5px" width="100%"/>
+                    <p>Имя: {% if client.name %}{{ client.name }} {% else %} не указано {% endif %}</p>
+                    <p>Фамилия: {% if client.surname %}{{ client.surname }} {% else %} не указана {% endif %}</p>
+                    <p>Номер телефона: {{ client.phone_number }}</p>
+                    <hr color="#de8b37" size="5px" width="100%"/>
+                    <div class="btn-user-inf">
+                        <a href="{% url 'changeinf_id' client.id %}"><button class="btn-reg_log" style="margin: 0;">Редактировать профиль</button></a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="prof-pet">
+                {% if not pets %}
+                 <div class="client-pet">
+                <p>Вам необходимо зарегистрировать питомца!</p>
+                 </div>
+                {% else %}
+                    {% for el in pets %}
+                        <div class="client-pet">
+                            <div class="client-pet-img">
+                                {% if el.pet.photo %}<img class="pet-photo" src="{{ el.pet.photo.url }}">{% else %}<p>Нет</p>{% endif %}
+
+                            </div>
+                            <div class="client-pet-inf">
+                                <p>Кличка: {{ el.pet.name }}</p>
+                                <p>Порода: {{ el.pet.race }}</p>
+                                <p>Возраст: {{ el.pet.age }} (полных лет)</p>
+
+                            </div>
+                            <div class="client-pet-btns">
+                                <a href="{% url 'admin_change_pet_inf' el.pet.id %}" style="margin: 0 60 0 0;"><button class="btn-record">Редактировать профиль питомца</button></a>
+
+                                <a href="{% url 'admin_record' el.pet.id client.id %}"><button class="btn-record">Записать на прием</button></a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+    <a href="{% url 'admin_reg_pet' client.id %}"><button class="btn-reg_log">Зарегистрировать питомца</button></a>
+    </div>
+{% endblock %}

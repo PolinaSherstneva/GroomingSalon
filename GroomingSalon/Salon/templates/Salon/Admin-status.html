@@ -1,0 +1,24 @@
+{% extends 'Salon/Layout.html' %}
+{% load static %}
+
+
+{% block title %}
+Изменение статуса | Груминг салон для животных "Опрятные лапки" - стрижка собак и кошек
+{% endblock %}
+
+{% block content %}
+<div class="change-status">
+    <a href="javascript:history.back()" style="text-decoration:none; color:black; margin: 10px 0 0 40px;"><i class="bi bi-caret-left" style=" font-size: 50px;"></i></a>
+<h3>Изменение статуса</h3>
+
+<form class="form_add" method="post">
+    {% csrf_token %}
+    {{ form.status }}<br>
+    <span>{{ error }}</span>
+    <p></p>
+    <button class="btn-reg_log" type="submit">Сохранить</button>
+</form>
+</div>
+
+
+{% endblock %}

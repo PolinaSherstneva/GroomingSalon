@@ -1,0 +1,64 @@
+{% extends 'Salon/Layout.html' %}
+{% load static %}
+{% block title %}
+Главная страница | Груминг салон для животных "Опрятные лапки" - стрижка собак и кошек
+{% endblock %}
+{% block head %}
+ <script src="{% static 'Salon/js/carousel.js' %}" defer></script>
+{% endblock %}
+{% block content %}
+
+<div class="main-page">
+    <div class="main-info">
+
+        <div class="left-part">
+    <div class="div-text-gl">
+     <h1 class="big-text-gl">Стрижка собак и кошек</h1>
+     <p class="text">Ухоженный питомец с шелковистой шерстью и стильной стрижкой, как дорогая известная картина, которой любуется весь мир</p>
+     {% if user.is_authenticated %}
+        <a href="{% url 'lk' %}"><button class="record-btn">Записаться на прием</button></a>
+     {% else %}
+        <script>
+            function myFunction()
+            {
+              document.getElementById("demo").innerHTML = "Для записи на прием необходимо авторизоваться!";
+            }
+        </script>
+        <button class="record-btn" onclick="myFunction()">Записаться на прием</button>
+     {%endif %}
+        {% if not user.is_authenticated %}
+        <p class="message-main-page" id="demo"></p>
+        {% endif %}
+
+    </div>
+  </div>
+
+  <div class="right-part">
+        <div class="carousel">
+
+
+            <ul class="slides">
+                <li class="slide" data-active>
+                   <img src="{% static 'Salon/img/GroomingCat2.jpg' %}" alt="GroomingImg1">
+                </li>
+                <li class="slide">
+                    <img src="{% static 'Salon/img/GroomingDog1.jpg' %}" alt="GroomingImg2">
+                </li>
+                <li class="slide">
+                    <img src="{% static 'Salon/img/GroomingDog2.jpg' %}" alt="GroomingImg2">
+                </li>
+                <li class="slide">
+                    <img src="{% static 'Salon/img/GroomingDog3.jpg' %}" alt="GroomingImg2">
+                </li>
+                <li class="slide">
+                    <img src="{% static 'Salon/img/GroomingCat3.jpg' %}" alt="GroomingImg2">
+                </li>
+            </ul>
+        </div>
+
+  </div>
+   </div>
+</div>
+{% endblock %}
+
+

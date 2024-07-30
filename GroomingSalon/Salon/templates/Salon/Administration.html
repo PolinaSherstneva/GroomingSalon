@@ -1,0 +1,67 @@
+{% extends 'Salon/Layout.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+Администрирование | Груминг салон для животных "Опрятные лапки" - стрижка собак и кошек
+{% endblock %}
+
+{% block content %}
+<div class="profile-main">
+    <h1 style="text-align:center;">Администрирование</h1>
+    <hr color="#de8b37" size="1px" width="100%"/>
+        <div class="admin-btn">
+            <a href="{% url 'admin_clients' %}"><button class="btn-reg_log">Клиенты</button></a>
+            <a href="{% url 'admin_services' %}"><button class="btn-reg_log">Услуги</button></a>
+            <a href="{% url 'admin_groomers' %}"><button class="btn-reg_log">Грумеры</button></a>
+            <a href="{% url 'archive_admin' %}"><button class="btn-reg_log">Архив записей</button></a>
+            <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn-reg_log" style="margin:20px 0 0 0; width:400px;">Выйти из режима администирования</button>
+            </form>
+        </div>
+    <hr color="#de8b37" size="1px" width="100%"/>
+    <div class="head-adm">
+        <div class="search-rec-adm">
+            <form action="{% url 'administration' %}" method="get" class="search-rec-adm-input">
+                <h1 class="name-service-part" style="width: 300px; font-size:30px; margin:auto;">Записи на прием</h1>
+                <input name="search" type="text" placeholder="Поиск..." style="width: 300px; margin:10px">
+                <div style="width: 200px; margin: auto 20;">
+                    Сортировка по дате:
+                        <label class="radio-btn" for="inc"><input id="inc" value="increasing" name="date" type="radio" style="width: 50px" placeholder="yyyy-mm-dd (DOB)" >от новых к старым</label>
+                        <label class="radio-btn" for="dec"><input id="dec" value="decreasing" name="date" type="radio" style="width: 50px" placeholder="yyyy-mm-dd (DOB)"> от старых к новым </label>
+                </div>
+                <button type="submit" >Найти</button>
+            </form>
+        </div>
+    </div>
+            <hr color="#de8b37" size="1px" width="100%"/>
+    <div class="profile-inner">
+                 {% if records %}
+                {% for rec in records %}
+                <div class="record" style="margin: 0; padding: 10 10 10 10;">
+                    {% if rec.status == "1" %}
+                    <h4><i class='fa fa-exclamation-circle' style='color:#fa5b2a'></i> Запись № {{ rec.id }}  -  Ожидание подтверждения</h4>
+                    {% elif rec.status == "2" %}
+                    <h4><i class='fa fa-exclamation-circle' style='color:#faa72a'></i> Запись № {{ rec.id }}  -  Запись подтверждена</h4>
+                    {% elif rec.status == "3" %}
+                    <h4><i class='bi bi-check-circle-fill' style='color:#16f296'></i> Запись № {{ rec.id }}  -  Выполнена</h4>
+                    {% endif %}
+                    <hr color="#de8b37" size="1px" width="95%"/>
+                    <p>Дата: {{ rec.date }}  Время: {{ rec.time }}</p>
+                    <p>Клиент: {% if rec.pet_user.user.surname %}{{ rec.pet_user.user.surname }} {{ rec.pet_user.user.name }}, {{ rec.pet_user.user.phone_number }}{% else %} {{ rec.pet_user.user.phone_number }}{% endif %}</p>
+                    <p>Питомец: {{ rec.pet_user.pet.name }}</p>
+                    <p>Услуга: {{ rec.service.name }}, стоимость: {{ rec.service.price|intcomma }}р.</p>
+                    <p>Грумер: {{ rec.master.fam }} {{rec.master.name}} {{rec.master.otch}}</p>
+                    <hr color="#de8b37" size="1px" width="95%"/>
+                    {% if not rec.status == "3" %}
+                    <a href="{% url 'admin_status' rec.id %}"><button class="btn-reg_log" style="margin:0">Изменить статус заявки</button></a>
+                    {% endif %}
+                </div>
+                {% endfor %}
+                {% endif %}
+
+    </div>
+
+</div>
+{% endblock %}

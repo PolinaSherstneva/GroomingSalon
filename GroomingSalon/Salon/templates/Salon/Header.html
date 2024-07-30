@@ -1,0 +1,26 @@
+{% load static %}
+<nav class="top-menu">
+
+    <div class="header_inner_logo">
+        <img src="{% static 'Salon/img/logo.png' %}" height="60" width="60">
+    </div>
+         <ul class="menu-main">
+
+             <li><a href="{% url 'home' %}" style="text-transform: uppercase;">Опрятные лапки<img src="{% static 'Salon/img/Paw2.0.png'%}" height="40" ></a></li>
+             <li><a href="{% url 'services' %}">Услуги<img src="{% static 'Salon/img/Paw2.0.png'%}" height="40" ></a></li>
+             <li><a href="{% url 'groomers' %}">Грумеры<img src="{% static 'Salon/img/Paw2.0.png'%}" height="40" ></a></li>
+                    {% if user.is_authenticated %}
+                        {% if user.is_superuser %}
+                            <li><a href="{% url 'lk' %}">Администрирование<img src="{% static 'Salon/img/Paw2.0.png'%}" height="40" ></a></li>
+                        {% else %}
+                            <li><a href="{% url 'lk' %}">Личный кабинет<img src="{% static 'Salon/img/Paw2.0.png'%}" height="40" ></a></li>
+                        {% endif %}
+                        {% else %}
+                            <li><a href="{% url 'login' %}">Войти в личный кабинет<img src="{% static 'Salon/img/Paw2.0.png'%}" height="40" ></a></li>
+                    {%endif %}
+<!--             <li><a href="">О нас<img src="{% static 'Salon/img/Paw2.0.png'%}" height="40" ></a></li>-->
+
+         </ul>
+</nav>
+<div class="nav-block"></div>
+

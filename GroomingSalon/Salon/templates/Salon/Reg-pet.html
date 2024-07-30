@@ -1,0 +1,49 @@
+{% extends 'Salon/Layout.html' %}
+{% load static %}
+
+
+{% block title %}
+Регистрация питомца | Груминг салон для животных "Опрятные лапки" - стрижка собак и кошек
+{% endblock %}
+
+{% block content %}
+<div class="reg-pet">
+<h3>Регистрация питомца</h3>
+
+<form class="form_add" id="regPetForm" enctype="multipart/form-data" method="post" data-race-pet-url="{% url 'ajax-load-race' %}">
+    <div class="form_add_pet">
+        {% csrf_token %}
+        {{ form.name }}<br>
+        {{ form.type }}<br>
+        {{ form.race }}<br>
+        {{ form.age }}<br>
+        {{ form.photo }}<br>
+    <span>{{ error }}</span>
+        <p></p>
+    </div>
+    <button class="btn-reg_log" type="submit">Сохранить</button>
+
+</form>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $("#id_type").change(function () {
+        const url = $("#regPetForm").attr("data-race-pet-url");
+        const typeId = $(this).val();
+
+        $.ajax({
+            url: '{% url 'ajax-load-race' %}',
+            data: {
+                type_id: typeId
+            },
+            success: function (data) {
+                $("#id_race").html(data);
+            }
+        });
+    });
+</script>
+
+
+</div>
+
+
+{% endblock %}

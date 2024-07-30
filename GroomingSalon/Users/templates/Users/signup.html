@@ -1,0 +1,38 @@
+{% extends 'Salon/Layout.html' %}
+{% load static %}
+
+
+{% block title %}Авторизация | Груминг салон для животных "Опрятные лапки" - стрижка собак и кошек{% endblock %}
+
+{% block content %}
+<div class="zone_register">
+  <div class="zone_register_inner">
+    <div class="textp">
+        <h3>Регистрация</h3>
+    </div>
+
+    <div class="form_add">
+        <form method="post">
+            {% csrf_token %}
+            {% for f in form %}
+            <div class="form__data">
+                <div class="form__label">
+                    <label class="label__form">{{f.label}}:</label>
+                </div>
+                <div class="form__form">{{f}}</div>
+            </div>
+            {% endfor %}
+            <div class="authorization__button">
+                <button class="btn-reg_log" type="submit">Регистрация</button>
+            </div>
+
+        </form>
+        <div class="registration">
+            <span class="registration__label">У вас уже есть аккаунт?</span>
+            <a href="{% url 'login' %}" class="registartion__link">Войти</a>
+        </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
